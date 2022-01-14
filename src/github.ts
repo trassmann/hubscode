@@ -78,7 +78,8 @@ export const getResultsForPage = async (
 export const search = async (
   apiToken: string,
   searchTerm: string,
-  onProgress: (fraction: number, results: string[]) => void = () => {}
+  onProgress: (fraction: number, results: string[]) => Promise<void> = () =>
+    Promise.resolve()
 ): Promise<any> => {
   const octokit = new Octokit({
     auth: apiToken,
@@ -97,7 +98,7 @@ export const search = async (
   const fetchConfigs = getFetchConfigs(firstPage.totalCount);
   const totalFetches = getTotalNumberOfFetches(firstPage.totalCount);
 
-  onProgress(1 / totalFetches, firstPage.items);
+  await onProgress(1 / totalFetches, firstPage.items);
 
   for (const fetchConfig of fetchConfigs) {
     const { pages, progressBase, ...config } = fetchConfig(searchTerm);
@@ -112,7 +113,7 @@ export const search = async (
         break;
       }
 
-      onProgress((page + progressBase) / totalFetches, pageResults.items);
+      await onProgress((page + progressBase) / totalFetches, pageResults.items);
 
       allResults.push(pageResults.items);
     }
