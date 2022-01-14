@@ -1,1 +1,1 @@
-export { search as github } from "./github";
+export { search as default } from "./github";

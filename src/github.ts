@@ -78,7 +78,7 @@ export const getResultsForPage = async (
 export const search = async (
   apiToken: string,
   searchTerm: string,
-  onProgress: (percentage: number) => void = () => {}
+  onProgress: (fraction: number) => void = () => {}
 ): Promise<any> => {
   const octokit = new Octokit({
     auth: apiToken,
