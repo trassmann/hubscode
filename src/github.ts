@@ -94,7 +94,7 @@ export const search = async (
 
   allResults.push(firstPage.items);
 
-  const fetchConfigs = getFetchConfigs(searchTerm, firstPage.totalCount);
+  const fetchConfigs = getFetchConfigs(firstPage.totalCount);
   const totalFetches = getTotalNumberOfFetches(firstPage.totalCount);
 
   onProgress(1 / totalFetches);

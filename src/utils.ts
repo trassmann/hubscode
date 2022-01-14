@@ -12,14 +12,14 @@ const iterationConfigs = [
     order: "desc",
   }),
   (searchTerm) => ({
-    progressBase: 0,
+    progressBase: 1,
     pages: _.range(1, 11),
     searchTerm,
     sort: "indexed",
     order: "asc",
   }),
   (searchTerm) => ({
-    progressBase: 0,
+    progressBase: 2,
     pages: _.range(1, 11),
     searchTerm,
   }),
@@ -37,10 +37,7 @@ const getNumberOfIterationConfigs = (numberOfResults: number): number => {
   return 2;
 };
 
-export const getFetchConfigs = (
-  searchTerm: string,
-  numberOfResults: number
-): any => {
+export const getFetchConfigs = (numberOfResults: number): any => {
   const numberOfIterations = getNumberOfIterationConfigs(numberOfResults);
   return _.range(numberOfIterations).map((idx) => iterationConfigs[idx]);
 };
