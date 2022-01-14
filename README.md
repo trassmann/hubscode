@@ -1,30 +1,38 @@
 # hubscode
+
 Optimized Github Code Search for Node.JS
 
 ## Why
+
 The Github Code Search is heavily limited:
+
 - Only the top 1000 results can be read
 - Querying the API is heavily rate-limited
 
 This package aims to reduce some of these restrictions by fetching the maximum results for each possible sorting configuration and fetching as often as possible. Since we don't want to stress the Github API, this is all within the limits of the rate-limiting. No attempts are made to circumvent the limit, thus, getting all results can take multiple minutes.
 
 ## Installation
+
 ```javascript
 npm install hubscode
 ```
 
 ## Usage
+
 ```javascript
 import codeSearch from "hubscode";
 
-const logProgress = (fraction) => {
+const logProgress = (fraction, resultsForPage) => {
   console.log(fraction * 100, "%", "done");
+
+  // The latest batch (page) of results is also passed to the progress callback
+  console.log("Results:", resultsForPage);
 };
 
 const runner = async () => {
   const searchTerm = "console.log love";
   const results = await codeSearch("GITHUB_API_TOKEN", searchTerm, logProgress);
-  
+
   //   Example Result (see https://docs.github.com/en/rest/reference/search#search-code--code-samples):
   //   [
   //     {
