@@ -1,6 +1,6 @@
 {
   "name": "hubscode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Github Code Search",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
