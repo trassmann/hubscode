@@ -12,14 +12,14 @@ const iterationConfigs = [
     order: "desc",
   }),
   (searchTerm) => ({
-    progressBase: 1,
+    progressBase: 10,
     pages: _.range(1, 11),
     searchTerm,
     sort: "indexed",
     order: "asc",
   }),
   (searchTerm) => ({
-    progressBase: 2,
+    progressBase: 20,
     pages: _.range(1, 11),
     searchTerm,
   }),
