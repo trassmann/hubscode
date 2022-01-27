@@ -93,6 +93,10 @@ export const search = async (
     order: "desc",
   });
 
+  if (!firstPage?.items) {
+    return [];
+  }
+
   allResults.push(firstPage.items);
 
   const fetchConfigs = getFetchConfigs(firstPage.totalCount);
